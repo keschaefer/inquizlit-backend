@@ -6,8 +6,6 @@ module.exports = {
     client: 'pg',
     connection: 'postgresql://localhost/INQUIZLIT_DB'
   },
-
-
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL
