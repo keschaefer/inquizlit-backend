@@ -10,6 +10,15 @@ module.exports = {
     getAllUsers() {
         return db('users');
     },
+    getQuestionById(id) {
+        return db('questions').where('id', id).first();
+    },
+    getAnswerById(id) {
+        return db('answers').where('id', id).first();
+    },
+    getUserById(id) {
+        return db('users').where('id', id).first();
+    },
     createQuestion(newQuestion) {
         return db('questions').insert(newQuestion).returning('*');
     },
