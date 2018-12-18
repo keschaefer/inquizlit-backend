@@ -1,10 +1,10 @@
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('answers').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
+      return knex('answers').insert([
         {
           answer: 'W3C is a worldwide organization developed to create standards for the web.',
           upvotes: 3,
