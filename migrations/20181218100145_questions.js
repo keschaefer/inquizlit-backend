@@ -1,6 +1,6 @@
 
-exports.up = function(knex, Promise) {
-	return knex.shema.createTable('questions', (question) => {
+exports.up = function (knex, Promise) {
+	return knex.schema.createTable('questions', (question) => {
 		question.increments('id');
 		question.string('question');
 		question.string('tag');
@@ -8,10 +8,11 @@ exports.up = function(knex, Promise) {
 		question.string('interviewer');
 		question.integer('upvotes');
 		question.integer('downvotes');
+		question.integer('user_id').references('id').inTable('users');
 	})
 
 };
 
-exports.down = function(knex, Promise) {
-	return knex.schema.dropTableIfExists('questions')
+exports.down = function (knex, Promise) {
+	return knex.schema.dropTableIfExists('questions');
 };
