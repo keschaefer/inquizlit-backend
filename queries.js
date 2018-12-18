@@ -28,4 +28,13 @@ module.exports = {
     createUser(newUser) {
         return db('users').insert(newUser).returning('*');
     },
+	deleteQuestion(id) {
+		return db('questions').where('id', id).delete();
+	},
+	deleteAnswer(id) {
+		return db('answers').where('id', id).delete();
+	},
+	deleteUser() {
+		return db('users').where('id', id).delete();
+	}
 }

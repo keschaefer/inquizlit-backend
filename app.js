@@ -42,8 +42,20 @@ app.post('/answers', (req, res) => {
 })
 
 app.post('/users', (req, res) => {
-	queries.createUser(req.body).then(user => res.send(user[0]))
-});
+	queries.createUser(req.body).then(user => res.send(user[0]));
+})
+
+app.delete('/questions/:id', (req, res) => {
+	queries.deleteQuestion(req.params.id).then(res.sendStatus(204))
+})
+
+app.delete('/answers/:id', (req, res) => {
+	queries.deleteAnswer(req.params.id).then(res.sendStatus(204))
+})
+
+app.delete('/users/:id', (req, res) => {
+	queries.deleteUser(req.params.id).then(res.sendStatus(204))
+})
 
 app.listen(port, () => {
 	console.log(`listening on ${port}`)
