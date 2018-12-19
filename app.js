@@ -45,15 +45,33 @@ app.post('/users', (req, res) => {
 })
 
 app.delete('/questions/:id', (req, res) => {
-	queries.deleteQuestion(req.params.id).then(res.sendStatus(204))
+	queries.deleteQuestion(req.params.id).then(res.sendStatus(204));
 })
 
 app.delete('/answers/:id', (req, res) => {
-	queries.deleteAnswer(req.params.id).then(res.sendStatus(204))
+	queries.deleteAnswer(req.params.id).then(res.sendStatus(204));
 })
 
 app.delete('/users/:id', (req, res) => {
-	queries.deleteUser(req.params.id).then(res.sendStatus(204))
+	queries.deleteUser(req.params.id).then(res.sendStatus(204));
+})
+
+app.get('/questions/:id/vote', (req, res) => {
+	console.log(req.body.vote)
+	if (req.body.vote === 'upvote'){
+		queries.patchUpvoteQuestion(req.params.id).then(newVoteCount => res.send('post'));
+	}
+	// // }  else {
+	// // 	queries.patchDownvoteQuestion(req.params.id).then(newVoteCount => res.send(newVoteCount));
+	// // }
+})
+
+app.get('/answers/:id/vote', (req, res) => {
+	if (req.body.vote === 'upvote'){
+		queries.patchUpvoteAnswer(req.params.id).then(newVoteCount => res.send(newVoteCount));
+	} else {
+		queries.patchDownvoteQuestion(req.params.id).then(newVoteCount => res.send(newVoteCount));
+	}
 })
 
 app.listen(port, () => {
