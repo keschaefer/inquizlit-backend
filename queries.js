@@ -39,16 +39,16 @@ module.exports = {
     deleteUser(id) {
         return db('users').where('id', id).delete();
     },
-	patchUpvoteQuestion(id) {
-		return db('questions').where('id', '=', id).increment('upvotes', 1);
-	},
-	patchDownvoteQuestion(id) {
-		return db('questions').where('id', id).decrement('downvotes', 1).returning('*');
-	},
-	patchUpvoteAnswer(id) {
-		return db('answers').where('id', id).increment('upvotes', 1).returning('*');
-	},
-	patchDownvoteAnswer(id) {
-		return db('answers').where('id', id).decrement('downvotes', 1).returning('*');
-	}
+    patchUpvoteQuestion(id) {
+        return db('questions').where('id', '=', id).increment('upvotes', 1);
+    },
+    patchDownvoteQuestion(id) {
+        return db('questions').where('id', '=', id).increment('downvotes', 1);
+    },
+    patchUpvoteAnswer(id) {
+        return db('answers').where('id', '=', id).increment('upvotes', 1);
+    },
+    patchDownvoteAnswer(id) {
+        return db('answers').where('id', '=', id).increment('downvotes', 1);
+    }
 }

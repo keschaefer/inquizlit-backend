@@ -56,23 +56,21 @@ app.delete('/users/:id', (req, res) => {
 	queries.deleteUser(req.params.id).then(res.sendStatus(204));
 })
 
-app.get('/questions/:id/vote', (req, res) => {
-	console.log(req.body.vote)
-	if (req.body.vote === 'upvote'){
-		queries.patchUpvoteQuestion(req.params.id).then(newVoteCount => res.send('post'));
-	}
-	// // }  else {
-	// // 	queries.patchDownvoteQuestion(req.params.id).then(newVoteCount => res.send(newVoteCount));
-	// // }
+app.patch('/questions/:id/upvote', (req, res) => {
+	queries.patchUpvoteQuestion(req.params.id).then(newVoteCount => res.send('post'));
 })
 
-app.get('/answers/:id/vote', (req, res) => {
-	if (req.body.vote === 'upvote'){
-		queries.patchUpvoteAnswer(req.params.id).then(newVoteCount => res.send(newVoteCount));
-	} else {
-		queries.patchDownvoteQuestion(req.params.id).then(newVoteCount => res.send(newVoteCount));
-	}
+app.patch('/questions/:id/downvote', (req, res) => {
+	queries.patchDownvoteQuestion(req.params.id).then(newVoteCount => res.send('post'));
 })
+
+app.patch('/answers/:id/upvote', (req, res) => {
+	queries.patchUpvoteAnswer(req.params.id).then(newVoteCount => res.send('it worked'));
+})
+app.patch('/answers/:id/downvote', (req, res) => {
+	queries.patchDownvoteAnswer(req.params.id).then(newVoteCount => res.send('it worked'));
+})
+
 
 app.listen(port, () => {
 	console.log(`listening on ${port}`)
