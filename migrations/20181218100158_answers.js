@@ -5,8 +5,8 @@ exports.up = function (knex, Promise) {
 		answer.string('answer');
 		answer.integer('upvotes');
 		answer.integer('downvotes');
-		answer.integer('user_id').references('id').inTable('users');
-		answer.integer('question_id').references('id').inTable('questions');
+		answer.integer('user_id').references('id').inTable('users').onDelete('cascade');
+		answer.integer('question_id').references('id').inTable('questions').onDelete('cascade');;
 	})
 };
 

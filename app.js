@@ -24,7 +24,6 @@ app.get('/answers/:id', (req, res) => {
 	queries.getAnswerById(req.params.id).then(answer => res.send(answer))
 })
 
-
 app.get('/users', (req, res) => {
 	queries.getAllUsers().then(users => res.send(users));
 })

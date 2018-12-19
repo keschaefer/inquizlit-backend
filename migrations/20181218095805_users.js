@@ -7,7 +7,6 @@ exports.up = function (knex, Promise) {
 		user.string('username');
 		user.string('email');
 		user.string('password');
-
 	})
 };
 
