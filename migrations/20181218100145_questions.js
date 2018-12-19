@@ -8,7 +8,7 @@ exports.up = function (knex, Promise) {
 		question.string('interviewer');
 		question.integer('upvotes');
 		question.integer('downvotes');
-		question.integer('user_id').references('id').inTable('users');
+		question.integer('user_id').references('id').inTable('users').onDelete('cascade');
 	})
 
 };

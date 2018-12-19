@@ -11,7 +11,9 @@ module.exports = {
         return db('users');
     },
     getQuestionById(id) {
-        return db('questions').where('id', id).first();
+        return db('questions').select('questions.id', 'answers.id as answer_id', "questions.question as question", "answers.answer as answer", "answers.upvotes", "answers.downvotes")
+            .join('answers', 'questions.id', 'answers.question_id')
+            .where('questions.id', id)
     },
     getAnswerById(id) {
         return db('answers').where('id', id).first();
@@ -28,13 +30,13 @@ module.exports = {
     createUser(newUser) {
         return db('users').insert(newUser).returning('*');
     },
-	deleteQuestion(id) {
-		return db('questions').where('id', id).delete();
-	},
-	deleteAnswer(id) {
-		return db('answers').where('id', id).delete();
-	},
-	deleteUser() {
-		return db('users').where('id', id).delete();
-	}
+    deleteQuestion(id) {
+        return db('questions').where('id', id).delete();
+    },
+    deleteAnswer(id) {
+        return db('answers').where('id', id).delete();
+    },
+    deleteUser(id) {
+        return db('users').where('id', id).delete();
+    }
 }
