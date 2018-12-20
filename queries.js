@@ -2,10 +2,15 @@ const db = require('./database-connections');
 
 module.exports = {
     getAllQuestions() {
-        return db('questions');
+        return db('questions')
+            .select('questions.id', 'questions.question', 'questions.tag', 'questions.company', 'questions.interviewer', 'questions.upvotes', 'questions.downvotes', 'questions.user_id as user_id', 'users.username')
+            .join('users', 'users.id', 'questions.user_id');
     },
     getAllAnswers() {
-        return db('answers');
+        return db('answers')
+            .select('answers.id', 'answers.answer', 'answers.upvotes', 'answers.downvotes', 'answers.user_id', 'answers.question_id', 'users.username')
+            .join('users', 'users.id', 'answers.user_id');
+
     },
     getAllUsers() {
         return db('users');
