@@ -52,7 +52,7 @@ npm start
 
 ```
 http://localhost:3001/questions 
-http://localhost:3001/aswers
+http://localhost:3001/users
 http://localhost:3001/answers 
 ```
 
