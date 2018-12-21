@@ -4,7 +4,7 @@ inQuizlit Express server to provide data for users, questions, and answers to in
 
 ## Links
 
-* [inQuizlit](https://inquizlit-iq.surge.sh) - inQuizlit app official website.
+* [inQuizlit](https://inquizlit.surge.sh) - inQuizlit app official website.
 * [inQuizlit Front-End Repository](https://github.com/jimbucktoo/inquizlit-frontend) - inQuizlit front-end Github repository.
 * [inQuizlit Back-End Repository](https://github.com/keschaefer/inquizlit-backend) - inQuizlit back-end Github repository.
 
