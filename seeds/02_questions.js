@@ -66,6 +66,69 @@ exports.seed = function (knex, Promise) {
           upvotes: 15,
           downvotes: 6,
           user_id: 2
+        },
+        {
+          question: 'How do you find the missing number in a given integer array of 1 to 100?',
+          tag: 'algorithms',
+          company: 'Bro Inc.',
+          interviewer: 'Thadd',
+          upvotes: 8,
+          downvotes: 2,
+          user_id: 4
+        },
+        {
+          question: 'How do you check if two strings are anagrams of each other?',
+          tag: 'algorithms',
+          company: 'Boss Ladys Inc.',
+          interviewer: 'Sarah',
+          upvotes: 18,
+          downvotes: 1,
+          user_id: 3
+        },
+        {
+          question: 'What is polymorphism?',
+          tag: 'computer science',
+          company: 'Bro Inc.',
+          interviewer: 'Thad Castle',
+          upvotes: 13,
+          downvotes: 3,
+          user_id: 3
+        },
+        {
+          question: 'What is inheritance?',
+          tag: 'computer science',
+          company: 'Bro Inc.',
+          interviewer: 'Thad Castle',
+          upvotes: 3,
+          downvotes: 7,
+          user_id: 3
+        },
+        {
+          question: 'You have a goat, a horse, a tortoise, and a hare, which one does math the best and why?',
+          tag: 'riddles',
+          company: 'Best Company Ever.',
+          interviewer: 'Sammy Sam',
+          upvotes: 28,
+          downvotes: 8,
+          user_id: 3
+        },
+        {
+          question: 'If you take purple and mix it with yellow, what color do you get?',
+          tag: 'riddles',
+          company: 'Working Hard Inc.',
+          interviewer: 'Bobby Bob',
+          upvotes: 13,
+          downvotes: 2,
+          user_id: 4
+        },
+        {
+          question: 'Whats your favorite memory?',
+          tag: 'computer science',
+          company: 'Bro Inc.',
+          interviewer: 'Thadd',
+          upvotes: 15,
+          downvotes: 6,
+          user_id: 2
         }
       ]);
     });
