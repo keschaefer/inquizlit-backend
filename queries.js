@@ -20,6 +20,9 @@ module.exports = {
             .join('answers', 'questions.id', 'answers.question_id')
             .where('questions.id', id)
     },
+    getUserByUsername(username) {
+        return db('users').where('username', username);
+    },
     getAnswerById(id) {
         return db('answers').where('id', id).first();
     },
