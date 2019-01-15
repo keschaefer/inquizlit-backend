@@ -2,7 +2,7 @@
 exports.up = function (knex, Promise) {
 	return knex.schema.createTable('answers', (answer) => {
 		answer.increments('id');
-		answer.string('answer');
+		answer.string('answer', 1000);
 		answer.integer('upvotes');
 		answer.integer('downvotes');
 		answer.integer('user_id').references('id').inTable('users').onDelete('cascade');
