@@ -77,17 +77,15 @@ app.post('/login', function (req, res) {
 	const { username, password } = req.body;
 	return queries.getUserByUsername(username)
 		.then(user => {
-			//see if user returns true or false
 			if (user.length === 0) {
-				res.send('User not found')
-				throw new Error('User not found');
+				return res.send('User not found')
 			}
 			return bcrypt.compare(password, user[0].password)
 				.then(isGood => {
 					if (isGood) {
 						return res.send(user)
 					}
-					return res.send('password was not correct')
+					return res.send('Password was not correct')
 				})
 		});
 });
@@ -99,7 +97,6 @@ Signup
 app.post('/users', (req, res) => {
 	const { firstname, lastname, username, email, password } = req.body;
 	return queries.getUserByUsername(username).then(user => {
-		console.log('callback user ', user)
 		if (user.length > 0) {
 			return res.send("User already exists")
 		} else {
