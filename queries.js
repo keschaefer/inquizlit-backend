@@ -23,6 +23,9 @@ module.exports = {
     getUserByUsername(username) {
         return db('users').where('username', username);
     },
+    getUserByEmail(email) {
+        return db('users').where('email', email);
+    },
     getAnswerById(id) {
         return db('answers').where('id', id).first();
     },

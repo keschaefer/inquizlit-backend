@@ -74,8 +74,10 @@ Login
 
 app.post('/login', function (req, res) {
 	// console.log(req.body)
-	const { username, password } = req.body;
-	return queries.getUserByUsername(username)
+	const { email, password } = req.body;
+	console.log('cats')
+	console.log(bcrypt.hashSync(password, 10))
+	return queries.getUserByEmail(email)
 		.then(user => {
 			if (user.length === 0) {
 				return res.send('User not found')
@@ -96,7 +98,7 @@ Signup
 
 app.post('/users', (req, res) => {
 	const { firstname, lastname, username, email, password } = req.body;
-	return queries.getUserByUsername(username).then(user => {
+	return queries.getUserByEmail(email).then(user => {
 		if (user.length > 0) {
 			return res.send("User already exists")
 		} else {
