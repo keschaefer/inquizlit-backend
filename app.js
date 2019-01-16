@@ -97,15 +97,15 @@ Signup
 */
 
 app.post('/users', (req, res) => {
-	const { firstname, lastname, username, email, password } = req.body;
+	const { first_name, last_name, username, email, password } = req.body;
 	return queries.getUserByEmail(email).then(user => {
 		if (user.length > 0) {
 			return res.send("User already exists")
 		} else {
 			let hash = bcrypt.hashSync(password, 10);
 			let newUser = {
-				first_name: firstname,
-				last_name: lastname,
+				first_name,
+				last_name,
 				username,
 				email,
 				password: hash
