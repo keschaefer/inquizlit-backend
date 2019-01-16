@@ -1,39 +1,40 @@
 const express = require('express');
 const app = express();
+const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const queries = require('./queries');
 const port = process.env.PORT || 3001;
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+// const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
 
 app.use(express.static('public'));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.use(cors());
 app.use(bodyParser.json());
 
-passport.use(new LocalStrategy(
-	function (username, password, done) {
-		queries.getUserByUsername(username).then(user => {
-			if (user[0] == undefined) {
-				return done(null, false, { message: 'Incorrect username.' });
-			}
-			if (user[0].password !== password) {
-				return done(null, false, { message: 'Incorrect password.' });
-			}
-			return done(null, user);
-		})
-	}
-));
+// passport.use(new LocalStrategy(
+// 	function (username, password, done) {
+// 		queries.getUserByUsername(username).then(user => {
+// 			if (user[0] == undefined) {
+// 				return done(null, false, { message: 'Incorrect username.' });
+// 			}
+// 			if (user[0].password !== password) {
+// 				return done(null, false, { message: 'Incorrect password.' });
+// 			}
+// 			return done(null, user);
+// 		})
+// 	}
+// ));
 
-passport.serializeUser(function (user, done) {
-	done(null, user);
-});
+// passport.serializeUser(function (user, done) {
+// 	done(null, user);
+// });
 
-passport.deserializeUser(function (user, done) {
-	done(null, user);
-});
+// passport.deserializeUser(function (user, done) {
+// 	done(null, user);
+// });
 
 app.get('/questions', (req, res) => {
 	queries.getAllQuestions().then(questions => res.send(questions));
@@ -67,12 +68,52 @@ app.post('/answers', (req, res) => {
 	queries.createAnswer(req.body).then(newAnswer => res.send(newAnswer));
 });
 
-app.post('/login', passport.authenticate('local'), function (req, res) {
-	res.send("Authenticated.");
+/*
+Login
+*/
+
+app.post('/login', function (req, res) {
+	// console.log(req.body)
+	const { username, password } = req.body;
+	return queries.getUserByUsername(username)
+		.then(user => {
+			//see if user returns true or false
+			if (user.length === 0) {
+				res.send('User not found')
+				throw new Error('User not found');
+			}
+			return bcrypt.compare(password, user[0].password)
+				.then(isGood => {
+					if (isGood) {
+						return res.send(user)
+					}
+					return res.send('password was not correct')
+				})
+		});
 });
 
+/*
+Signup
+*/
+
 app.post('/users', (req, res) => {
-	queries.createUser(req.body).then(user => res.send(user[0]));
+	const { firstname, lastname, username, email, password } = req.body;
+	return queries.getUserByUsername(username).then(user => {
+		console.log('callback user ', user)
+		if (user.length > 0) {
+			return res.send("User already exists")
+		} else {
+			let hash = bcrypt.hashSync(password, 10);
+			let newUser = {
+				first_name: firstname,
+				last_name: lastname,
+				username,
+				email,
+				password: hash
+			}
+			return queries.createUser(newUser).then(newUser => res.send({ response: newUser[0], message: "golly gee it worked" }));
+		}
+	})
 });
 
 app.delete('/questions/:id', (req, res) => {
