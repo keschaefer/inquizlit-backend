@@ -4,13 +4,24 @@ inQuizlit Express server to provide data for users, questions, and answers to in
 
 ## Links
 
-* [inQuizlit](https://inquizlit.surge.sh) - inQuizlit app official website.
+* [inQuizlit Website](https://inquizlit.herokuapp.com/) - inQuizlit official website.
+* [inQuizlit Server](https://inquizlit-backend.herokuapp.com/questions) - inQuizlit official server.
 * [inQuizlit Front-End Repository](https://github.com/jimbucktoo/inquizlit-frontend) - inQuizlit front-end Github repository.
 * [inQuizlit Back-End Repository](https://github.com/keschaefer/inquizlit-backend) - inQuizlit back-end Github repository.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+* [NPM](https://www.npmjs.com/) - npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js.
+* [Node.js](https://www.nodejs.org/) - Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
+* [Knex CLI](https://knexjs.org/) - Knex.js is a SQL query builder for PostgreSQL.
+* [PostgreSQL CLI](https://www.postgresql.org/) - PostgreSQL is a an open source object-relational database system.
+* [Heroku CLI](https://www.heroku.com/) - Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
 
 ### Installing
 
@@ -69,5 +80,3 @@ http://localhost:3001/answers
 * [jimbucktoo](https://github.com/jimbucktoo) - Jimmy Liang
 * [keschaefer](https://github.com/keschaefer) - Kate Schaefer
 * [jtawilliams](https://github.com/jtawilliams) - Justin Williams
-
-
